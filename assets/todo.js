@@ -10,6 +10,7 @@ User data is extracted from local storage and saved in variable todo.data
 Otherwise, comments are provided at appropriate places
 */
 
+Parse.initialize("zLRowA3ONTXnWOrV7yPuYszB88rs4B5tq1TxDRed", "1TVc4CN3DNrWZ6PJts3UmyKeanP68wVU2Kt5gNWJ");
 var todo = todo || {},
     data = JSON.parse(localStorage.getItem("todoData"));
 
@@ -156,44 +157,14 @@ data = data || {};
     };
 
     todo.add = function() {
-        var inputs = $("#" + defaults.formId + " :input"),
-            errorMessage = "Title can not be empty",
-            id, title, description, date, tempData;
 
-        if (inputs.length !== 4) {
-            return;
-        }
+        var food = $("#food").val();
+        var FoodObject = Parse.Object.extend("FoodObject");
+        var foodObject = new FoodObject();
+        foodObject.save({FoodName: food}).then(function(object) {
+          
+        });
 
-        title = inputs[0].value;
-        description = inputs[1].value;
-        date = inputs[2].value;
-
-        if (!title) {
-            generateDialog(errorMessage);
-            return;
-        }
-
-        id = new Date().getTime();
-
-        tempData = {
-            id : id,
-            code: "1",
-            title: title,
-            date: date,
-            description: description
-        };
-
-        // Saving element in local storage
-        data[id] = tempData;
-        localStorage.setItem("todoData", JSON.stringify(data));
-
-        // Generate Todo Element
-        generateElement(tempData);
-
-        // Reset Form
-        inputs[0].value = "";
-        inputs[1].value = "";
-        inputs[2].value = "";
     };
 
     var generateDialog = function (message) {
