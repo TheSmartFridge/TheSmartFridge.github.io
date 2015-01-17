@@ -9,8 +9,8 @@ All data is stored in local storage
 User data is extracted from local storage and saved in variable todo.data
 Otherwise, comments are provided at appropriate places
 */
-
 Parse.initialize("zLRowA3ONTXnWOrV7yPuYszB88rs4B5tq1TxDRed", "1TVc4CN3DNrWZ6PJts3UmyKeanP68wVU2Kt5gNWJ");
+      
 var todo = todo || {},
     data = JSON.parse(localStorage.getItem("todoData"));
 
@@ -138,15 +138,15 @@ data = data || {};
             "text": params.description
         }).appendTo(wrapper);
 
-	    wrapper.draggable({
+        wrapper.draggable({
             start: function() {
                 $("#" + defaults.deleteDiv).show();
             },
             stop: function() {
                 $("#" + defaults.deleteDiv).hide();
             },
-	        revert: "invalid",
-	        revertDuration : 200
+            revert: "invalid",
+            revertDuration : 200
         });
 
     };
@@ -157,14 +157,52 @@ data = data || {};
     };
 
     todo.add = function() {
-
+        var inputs = $("#" + defaults.formId + " :input"),
+            errorMessage = "Title can not be empty",
+            id, title, description, date, tempData;
         var food = $("#food").val();
         var FoodObject = Parse.Object.extend("FoodObject");
         var foodObject = new FoodObject();
+        foodObject.set("userId", Parse.User.current());
         foodObject.save({FoodName: food}).then(function(object) {
           
         });
 
+
+        if (inputs.length !== 4) {
+            return;
+        }
+
+        title = inputs[0].value;
+        description = inputs[1].value;
+        date = inputs[2].value;
+
+        if (!title) {
+            generateDialog(errorMessage);
+            return;
+        }
+
+        id = new Date().getTime();
+
+        tempData = {
+            id : id,
+            code: "1",
+            title: title,
+            date: date,
+            description: description
+        };
+
+        // Saving element in local storage
+        data[id] = tempData;
+        localStorage.setItem("todoData", JSON.stringify(data));
+
+        // Generate Todo Element
+        generateElement(tempData);
+
+        // Reset Form
+        inputs[0].value = "";
+        inputs[1].value = "";
+        inputs[2].value = "";
     };
 
     var generateDialog = function (message) {
@@ -188,7 +226,7 @@ data = data || {};
             }
         };
 
-	    responseDialog.dialog({
+        responseDialog.dialog({
             autoOpen: true,
             width: 400,
             modal: true,
