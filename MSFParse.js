@@ -1,6 +1,8 @@
+Parse.initialize("zLRowA3ONTXnWOrV7yPuYszB88rs4B5tq1TxDRed", "1TVc4CN3DNrWZ6PJts3UmyKeanP68wVU2Kt5gNWJ");
+
 function signUpUser() {
 
-      Parse.initialize("zLRowA3ONTXnWOrV7yPuYszB88rs4B5tq1TxDRed", "1TVc4CN3DNrWZ6PJts3UmyKeanP68wVU2Kt5gNWJ");
+  
           var user = new Parse.User();
 
 	        var username = $("#signup-username").val();
@@ -51,7 +53,7 @@ function addFood(){
 }
 function signInUser() {
 
-			Parse.initialize("zLRowA3ONTXnWOrV7yPuYszB88rs4B5tq1TxDRed", "1TVc4CN3DNrWZ6PJts3UmyKeanP68wVU2Kt5gNWJ");
+		
 			var username = $("#login-username").val();
 			var password = $("#login-password").val();
 

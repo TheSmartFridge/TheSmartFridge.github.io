@@ -157,14 +157,14 @@ data = data || {};
     };
 
     todo.add = function() {
+        var currentUser = Parse.User.current().id;
         var inputs = $("#" + defaults.formId + " :input"),
             errorMessage = "Title can not be empty",
             id, title, description, date, tempData;
         var food = $("#food").val();
         var FoodObject = Parse.Object.extend("FoodObject");
         var foodObject = new FoodObject();
-        foodObject.set("userId", Parse.User.current());
-        foodObject.save({FoodName: food}).then(function(object) {
+        foodObject.save({FoodName: food, userId: currentUser}).then(function(object) {
           
         });
 
