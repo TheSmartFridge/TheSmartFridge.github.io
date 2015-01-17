@@ -44,7 +44,11 @@ function openMyShoppingList(){
 	window.location.href = "shoppinglist.html";
 
 }
+function addFood(){
 
+	Parse.Food.userId = Parse.User.objectId;
+
+}
 function signInUser() {
 
 			Parse.initialize("zLRowA3ONTXnWOrV7yPuYszB88rs4B5tq1TxDRed", "1TVc4CN3DNrWZ6PJts3UmyKeanP68wVU2Kt5gNWJ");
