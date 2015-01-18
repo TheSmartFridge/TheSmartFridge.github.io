@@ -14,7 +14,7 @@
             <div id="header"> My Shopping List</div>
 
             <div class="task-list task-container" id="pending">
-                <h3>Pending</h3>
+                <h3>List</h3>
                 <!--<div class="todo-task">
                     <div class="task-header">Sample Header</div>
                     <div class="task-date">25/06/1992</div>
@@ -30,12 +30,14 @@
                     <input type="text" placeholder="Title" id = "food" />
                     <textarea placeholder="Description"></textarea>
                     <input type="text" id="datepicker" placeholder="Due Date (dd/mm/yyyy)" />
-                    <input type="button" class="btn btn-primary" id="signup-password" value="Add Food" onclick="todo.add()" />
+                    <input type="button" class="btn btn-primary"  value="Add Food" onclick="todo.add()" />
+
                     
 
                 </form>
 
                 <input type="button" class="btn btn-primary" value="Clear Data" onclick="todo.clear();" />
+                <input type="button" class="btn btn-primary" value="Back" onclick="todo.back();" />
 
 
                 

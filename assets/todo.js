@@ -109,8 +109,8 @@ data = data || {};
     };
 
     // Add Task
-    var generateElement = function(params){
-        var parent = $(codes[params.code]),
+    var generateElement = function(id, name){
+        var parent = $('#pending'),
             wrapper;
 
         if (!parent) {
@@ -119,25 +119,16 @@ data = data || {};
 
         wrapper = $("<div />", {
             "class" : defaults.todoTask,
-            "id" : defaults.taskId + params.id,
-            "data" : params.id
+            "id" : defaults.taskId + id,
+            "data" : id
         }).appendTo(parent);
 
         $("<div />", {
             "class" : defaults.todoHeader,
-            "text": params.title
+            "text": name
         }).appendTo(wrapper);
 
-        $("<div />", {
-            "class" : defaults.todoDate,
-            "text": params.date
-        }).appendTo(wrapper);
-
-        $("<div />", {
-            "class" : defaults.todoDescription,
-            "text": params.description
-        }).appendTo(wrapper);
-
+        
         wrapper.draggable({
             start: function() {
                 $("#" + defaults.deleteDiv).show();
@@ -193,11 +184,27 @@ data = data || {};
         };
 
         // Saving element in local storage
-        data[id] = tempData;
-        localStorage.setItem("todoData", JSON.stringify(data));
+        
 
         // Generate Todo Element
-        generateElement(tempData);
+        
+        var foodQuery = new Parse.Query(FoodObject);
+            foodQuery.equalTo("userId", currentUser);
+            foodQuery.find({
+                success: function(results)
+                    {
+                        alert(results);
+                       for(var y = 0; y<results.length+1; y++){
+
+                            generateElement(y, results[y]['attributes']['FoodName']);
+                            console.log(results[y]['attributes']['FoodName']);
+                       }
+                    }
+
+            });
+            
+
+        //
 
         // Reset Form
         inputs[0].value = "";
@@ -224,7 +231,7 @@ data = data || {};
             "Ok" : function () {
                 responseDialog.dialog("close");
             }
-        };
+        };  
 
         responseDialog.dialog({
             autoOpen: true,
@@ -235,6 +242,7 @@ data = data || {};
         });
     };
 
+   
     todo.clear = function () {
         data = {};
         localStorage.setItem("todoData", JSON.stringify(data));
@@ -242,3 +250,4 @@ data = data || {};
     };
 
 })(todo, data, jQuery);
+
