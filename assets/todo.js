@@ -114,7 +114,7 @@ data = data || {};
             wrapper;
 
         if (!parent) {
-            //return;
+            return;
         }
 
         wrapper = $("<div />", {
@@ -159,8 +159,7 @@ data = data || {};
           
         });
 
-        var z = 0;
-       generateElement(z, "Orange");
+        
 ; 
         // Saving element in local storage
         
