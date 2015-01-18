@@ -114,7 +114,7 @@ data = data || {};
             wrapper;
 
         if (!parent) {
-            return;
+            //return;
         }
 
         wrapper = $("<div />", {
@@ -230,3 +230,7 @@ data = data || {};
 
 })(todo, data, jQuery);
 
+    todo.updateFridge = function(){
+
+
+    }

@@ -31,9 +31,23 @@ function signOut(){
 	window.location.href = "index.html";
 
 }
-function openMyFridge(){
+function updateFridge(){
 
-	window.location.href = "fridgeindex.html";
+	window.location.href = "myfridgeindex.html";
+	 var foodQuery = new Parse.Query(FoodObject);
+            foodQuery.find({
+                success: function(results)
+                    {
+                        
+                       for(var y = 0; y<results.length+1; y++){
+
+                            //generateElement(y, results[y]['attributes']['FoodName']);
+                            alert("Good");
+                            
+                       }
+                    }
+
+            });
 	
 
 }
