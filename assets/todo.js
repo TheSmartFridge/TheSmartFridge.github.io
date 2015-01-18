@@ -160,28 +160,7 @@ data = data || {};
         });
 
 
-        if (inputs.length !== 4) {
-            return;
-        }
-
-        title = inputs[0].value;
-        description = inputs[1].value;
-        date = inputs[2].value;
-
-        if (!title) {
-            generateDialog(errorMessage);
-            return;
-        }
-
-        id = new Date().getTime();
-
-        tempData = {
-            id : id,
-            code: "1",
-            title: title,
-            date: date,
-            description: description
-        };
+       
 
         // Saving element in local storage
         
@@ -193,11 +172,11 @@ data = data || {};
             foodQuery.find({
                 success: function(results)
                     {
-                        alert(results);
+                        
                        for(var y = 0; y<results.length+1; y++){
 
                             generateElement(y, results[y]['attributes']['FoodName']);
-                            console.log(results[y]['attributes']['FoodName']);
+                            
                        }
                     }
 

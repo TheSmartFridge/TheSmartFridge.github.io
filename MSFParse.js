@@ -34,6 +34,7 @@ function signOut(){
 function openMyFridge(){
 
 	window.location.href = "fridgeindex.html";
+	
 
 }
 function openMyHealth(){
