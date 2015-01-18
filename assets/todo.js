@@ -159,16 +159,16 @@ data = data || {};
           
         });
 
-
-       
-
+        var z = 0;
+       generateElement(z, "Orange");
+; 
         // Saving element in local storage
         
 
         // Generate Todo Element
         
         var foodQuery = new Parse.Query(FoodObject);
-            foodQuery.equalTo("userId", currentUser);
+             foodQuery.equalTo("userId", currentUser);
             foodQuery.find({
                 success: function(results)
                     {
@@ -177,8 +177,12 @@ data = data || {};
 
                             generateElement(y, results[y]['attributes']['FoodName']);
                             
+                            
                        }
+
+                       
                     }
+
 
             });
             
@@ -232,5 +236,5 @@ data = data || {};
 
     todo.updateFridge = function(){
 
-
+        
     }
