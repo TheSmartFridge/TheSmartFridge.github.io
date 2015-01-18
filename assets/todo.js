@@ -114,7 +114,7 @@ data = data || {};
             wrapper;
 
         if (!parent) {
-            return;
+            //return;
         }
 
         wrapper = $("<div />", {
@@ -159,15 +159,16 @@ data = data || {};
           
         });
 
-        
-; 
+
+       
+
         // Saving element in local storage
         
 
         // Generate Todo Element
         
         var foodQuery = new Parse.Query(FoodObject);
-             foodQuery.equalTo("userId", currentUser);
+            foodQuery.equalTo("userId", currentUser);
             foodQuery.find({
                 success: function(results)
                     {
@@ -176,12 +177,8 @@ data = data || {};
 
                             generateElement(y, results[y]['attributes']['FoodName']);
                             
-                            
                        }
-
-                       
                     }
-
 
             });
             
