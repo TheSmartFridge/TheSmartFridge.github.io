@@ -148,6 +148,9 @@ data = data || {};
     };
 
     todo.add = function() {
+          data = {};
+        localStorage.setItem("todoData", JSON.stringify(data));
+        $("." + defaults.todoTask).remove();
         var currentUser = Parse.User.current().id;
         var inputs = $("#" + defaults.formId + " :input"),
             errorMessage = "Title can not be empty",
